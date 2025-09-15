@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solay's Product Innovation Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .timeline-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .profile-photo {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 4px solid white;
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .profile-placeholder {
+            padding: 10px;
+            line-height: 1.2;
+            font-weight: 500;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            margin-left: 140px; /* Make room for profile photo */
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 300;
+        }
+        
+        .story-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .story-section h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .story-content {
+            color: #444;
+            font-size: 1rem;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+        
+        .story-content p {
+            margin-bottom: 18px;
+        }
+        
+        .story-content strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .philosophy-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #764ba2;
+        }
+        
+        .philosophy-box h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .key-insights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .insight-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .insight-card h4 {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .insight-card .number {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .highlight-quote {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 4px solid #f59e0b;
+            font-style: italic;
+            color: #78350f;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            color: white;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 60px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin: 40px 0;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            margin: 0 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            margin: 0 10px;
+            align-self: flex-start;
+            margin-top: 40px;
+            box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.2);
+        }
+        
+        .year {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .company {
+            font-size: 1.1rem;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .product-gallery {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .product-image {
+            width: 240px;
+            height: 180px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #e0e0e0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .image-placeholder {
+            color: #999;
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 10px;
+            line-height: 1.2;
+        }
+        
+        /* Specific product image styling */
+        .jci-metasys {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+        }
+        
+        .sloan-plumbing {
+            background: linear-gradient(135deg, #0369a1, #0284c7);
+            color: white;
+        }
+        
+        .siemens-dxr {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+        
+        .enlighted-sensors {
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            color: white;
+        }
+        
+        .ge-lightgrid {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+        }
+        
+        .philips-lighting {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+            color: white;
+        }
+        
+        .aerocomm-zigbee {
+            background: linear-gradient(135deg, #db2777, #ec4899);
+            color: white;
+        }
+        
+        .cattle-monitoring {
+            background: linear-gradient(135deg, #92400e, #b45309);
+            color: white;
+        }
+        
+        .products {
+            margin-bottom: 15px;
+        }
+        
+        .product-item {
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px 5px 5px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: white;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); /* Default fallback */
+        }
+        
+        .product-item.iot-connected {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .product-item.lighting-controls {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #8b4513;
+        }
+        
+        .product-item.building-automation {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #2d3748;
+        }
+        
+        .product-item.smart-plumbing {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+        }
+        
+        .revenue {
+            font-weight: bold;
+            color: #2ecc71;
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+        
+        .achievement {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
+        
+        .image-instructions {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            background: rgba(102, 126, 234, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            cursor: help;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .cta-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(7) { animation-delay: 0.7s; }
+        .timeline-item:nth-child(8) { animation-delay: 0.8s; }
+        .timeline-item:nth-child(9) { animation-delay: 0.9s; }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+            }
+            
+            .timeline-content {
+                margin-left: 60px;
+                margin-right: 0;
+            }
+            
+            .timeline-dot {
+                margin-left: 20px;
+            }
+            
+            .header {
+                margin-left: 0;
+                text-align: center;
+                margin-top: 140px; /* Make room for profile photo on mobile */
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-photo {
+                position: relative;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-bottom: 20px;
+            }
+            
+            .stats {
+                gap: 20px;
+            }
+            
+            .product-gallery {
+                justify-content: flex-start;
+            }
+            
+            .product-image {
+                width: 100px;
+                height: 75px;
+            }
+            
+            .key-insights {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-content {
+                text-align: left;
+            }
+        }
+        
+        .legend {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .product-item {
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px 5px 5px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: white;
+        }
+        
+        .iot-connected {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .lighting-controls {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .building-automation {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .smart-plumbing {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        }
+        
+        .legend h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+        }
+        
+        .instructions-panel {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 10px;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .instructions-panel h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+        }
+        
+        .instructions-panel p {
+            color: #78350f;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline-container">
+        <div class="profile-photo">
+            <div class="profile-placeholder">
+                <img src = "Solay Photo.png" alt = "Solay Photo"><br>
+                <!--<small>(120x120px)</small>-->
+            </div>
+        </div>
+        
+        <div class="header">
+            <h1>Solay's Product Innovation Journey</h1>
+            <p>22+ Years of Connecting Devices & Solving Real-World Problems</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">22+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100K+</span>
+                    <span class="stat-label">Devices Connected</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$500M+</span>
+                    <span class="stat-label">Product Value Created</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Major Products</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-section">
+            <h2>The Soul of Product Management</h2>
+            <div class="story-content">
+                <p>Twenty-two years ago, I connected my first device to the internet: a cattle temperature sensor. Today, I've helped bring hundreds of thousands of connected devices online—from light fixtures that adapt to human behavior to plumbing systems that prevent water waste to building automation systems that slash energy consumption by 40%.</p>
+                
+                <div class="highlight-quote">
+                    "Great products aren't born from technology. They're born from obsessing over problems that keep people awake at night."
+                </div>
+
+                <p>This journey began with a simple realization: <strong>Product management isn't about managing products—it's about managing the problems our products solve.</strong></p>
+            </div>
+
+            <div class="philosophy-box">
+                <h3>The Problem-First Philosophy</h3>
+                <p>Early in my career at Philips Lighting, I was tasked with developing an indoor lighting control system. The engineering team was excited about the IEEE 802.15.4 wireless protocol. The sales team loved the technical specs. But when I visited our first major installation—a 2000-node deployment—I watched facility managers struggle with compatibility issues that brought their operations to a halt.</p>
+                <p>That revelation has guided every product decision since. Whether developing the LightGrid system that secured an $18M utility contract at Current by GE, or launching IoT sensor portfolios worth $100M+ at companies like Sloan and Siemens, the question remained the same: <em>What problem are we really solving, and for whom?</em></p>
+            </div>
+
+            <div class="key-insights">
+                <div class="insight-card">
+                    <h4><span class="number">1</span>Deep Customer Empathy</h4>
+                    <p>I don't just gather requirements—I spend time in the field. I've commissioned systems at 3 AM, debugged network issues in freezing parking lots, and sat through countless customer pain-point sessions. The best product insights come from being uncomfortably close to customer reality.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <h4><span class="number">2</span>Technology-Business Translation</h4>
+                    <p>Having an engineering background allows me to speak both languages fluently. I can evaluate whether a ZigBee mesh network or 6LoWPAN is the right choice while simultaneously building business cases that resonate with C-suite executives.</p>
+                </div>
+                
+                <div class="insight-card">
+                    <h4><span class="number">3</span>Execution Excellence</h4>
+                    <p>Great product strategy is worthless without flawless execution. I've learned to navigate supply chain disruptions, lead cross-functional teams through complex technical integrations, and manage product lifecycles from concept to scale.</p>
+                </div>
+            </div>
+
+            <div class="story-content">
+                <p>Working across operational technology (OT) leaders like Philips, GE, Siemens, and Johnson Controls taught me something crucial: <strong>the future belongs to products that seamlessly bridge the physical and digital worlds.</strong></p>
+                
+                <p>I've seen billion-dollar companies struggle because their brilliant engineers created solutions looking for problems, rather than solving real customer pain points. My approach? Start with the customer's midnight anxiety:</p>
+                
+                <ul style="margin: 20px 0; padding-left: 30px;">
+                    <li><strong>Facility managers losing sleep over energy costs?</strong> → Energy Dashboard and analytics</li>
+                    <li><strong>Healthcare facilities worried about infection control?</strong> → Smart restroom solutions with real-time monitoring</li>
+                    <li><strong>Building operators overwhelmed by complex systems?</strong> → Low-code/no-code integration platforms</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="year">2024-Present</div>
+                    <div class="company">Johnson Controls International</div>
+                    <div class="product-gallery">
+                        <div class="product-image jci-metasys">
+                            <img src="Metasys EDR.png" alt="Metasys EDR">
+                        </div>
+                        <div class="product-image jci-metasys">
+                            <img src="Metasys NodeRED Integration.png" alt="Metasys NodeRED Integration">
+                        </div>    
+                        <div class="product-image jci-metasys">
+                            <img src="Metasys Smoke Controls.png" alt="Metasys Smoke Controls">
+                        </div>
+                    </div>
+                    <div class="products">
+                        <span class="product-item">📊 Metasys Energy Dashboard</span>
+                        <span class="product-item">🔗🏢 Building Data Integration Platform</span>
+                        <span class="product-item">🔥 UL 864 Smoke Control Portfolio</span>
+                    </div>
+                    <div class="achievement">Leading NodeRED-based low-code/no-code integration strategy for building automation</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="year">2023-2024</div>
+                    <div class="company">Sloan Valve Company</div>
+                    <div class="product-gallery">
+                        <div class="product-image sloan-plumbing">
+                            <img src="Sloan SC Argus Pro.png" alt="Sloan SC Argus Pro">
+                        </div>
+                        <div class="product-image sloan-plumbing">
+                            <img src="Sloan PWT.png" alt="Sloan PWT">
+                        </div>
+                    </div>
+                    <div class="products">
+                        <span class="product-item">🌐 IoT Product Line</span>
+                        <span class="product-item">🔗 🚻 Sloan Connect Platform</span>
+                        <span class="product-item">🔗 🚻 Smart Restroom Solutions</span>
+                        <span class="product-item">🔗 🏢 Connected Plumbing for Jails and Prisons</span>
+                    </div>
+                    <div class="revenue">Portfolio Value: ~$100M</div>
+                    <div class="achievement">Pioneered smart restroom solutions and connected plumbing for healthcare</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="year">2018-2019</div>
+                    <div class="company">Enlighted Inc. (Pre/Post Siemens Acquisition)</div>
+                    <div class="product-gallery">
+                        <div class="product-image enlighted-sensors">
+                            <img src="Enlighted.png" alt="Enlighted Architecture">
+                        </div>
+                        <div class="product-image enlighted-sensors">
+                            <img src="Enlighted Tunable White.png" alt="Enlighted Tunable White">
+                        </div>
+                    </div>
+                    <div class="products">
+                        <span class="product-item">💡🎛️ Human Centric Lighting</span>
+                        <span class="product-item">🔘 2-Wire Sensor System</span>
+                        <span class="product-item">💡🎛️ 🛜 Connected Lighting Platform</span>
+                    </div>
+                    <div class="achievement">Led M&A technology integration and market positioning strategy</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="year">2017-2023</div>
+                    <div class="company">Siemens Smart Infrastructure</div>
+                    <div class="product-gallery">
+                        <div class="product-image siemens-dxr">
+                            <img src="Siemens DXR.png" alt="Siemens DXR">
+                        </div>
+                        <div class="product-image siemens-dxr">
+                            <img src="Siemens Connect Box.png" alt="Siemens Connect Box">
+                        </div>
+                        <div class="product-image siemens-dxr">
+                            <img src="Siemens Sensors.png" alt="Siemens Sensors">
+                        </div>
+                        <div class="product-image siemens-dxr">
+                            <img src="Siemens RTU.png" alt="Siemens RTU">
+                        </div>
+                    </div>
+                    <div class="products">
+                        <span class="product-item">🌡️ Room Sensor Portfolio</span>
+                        <span class="product-item">🌞❄️💡📜 🎛️ DXR Controllers</span>
+                        <span class="product-item">🔗🏢 Wattsense Edge Automation</span>
+                        <span class="product-item">🌐 IoT Sensors & Actuators</span>
+                        <span class="product-item">🌞❄️ RTU FDD Solution</span>
+                    </div>
+                    <div class="revenue">Room Sensors: $18M | Controllers: $20M</div>
+                    <div class="achievement">Successfully navigated supply chain crisis while meeting revenue targets; attended Next47 Accelerator</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            
+           <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="year">2014-2017</div>
+                    <div class="company">Current, powered by GE</div>
+                    <div class="product-gallery">
+                        <div class="product-image ge-lightgrid">
+                            <img src="GE LightGrid.png" alt="GE LightGrid">
+                        </div>
+                        <div class="product-image ge-lightgrid">
+                            <img src="GE Daintree.png" alt="GE Daintree">
+                        </div>
+                    </div>
+                    <div class="products">
+                        <span class="product-item">💡🎛️ 🛜 LightGrid Wireless System</span>
+                        <span class="product-item">💡🎛️ 🛜 Intelligent Lighting Platform</span>
+                        <span class="product-item">💡🎛️ 🛜 Daintree Integration</span>
+                    </div>
+                    <div class="revenue">LightGrid Sales: $4.5M (2015) | Largest Deal: $250M (JPMorgan Chase)</div>
+                    <div class="achievement">Secured $18M+ utility order; received global quarterly award for exceptional performance</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="year">2007-2014</div>
+                    <div class="company">Philips Lighting</div>
+                    <div class="product-gallery">
+                        <div class="product-image philips-lighting">
+                            <img src="Philips DALI Ballast.png" alt="Philips DALI Ballast">
+                        </div>
+                        <div class="product-image philips-lighting">
+                            <img src="Philips OccuSwitch.png" alt="Philips OccuSwitch">
+                        </div>
+                        <div class="product-image philips-lighting">
+                            <img src="Philips SpaceWise.jpg" alt="Philips SpaceWise">
+                        </div>
+                        <div class="product-image philips-lighting">
+                            <img src="Philips Starsense.png" alt="Philips Starsense">
+                        </div>
+                    </div>
+                    <div class="products">
+                        <span class="product-item">💡🎛️ 🛜 Starsense Outdoor Control</span>
+                        <span class="product-item">💡🎛️ 🛜 Indoor Luminaire Controls</span>
+                        <span class="product-item">💡🎛️ 🛜 OccuSwitch Wireless</span>
+                        <span class="product-item">💡🎛️ 🛜 Equos ZigBee System</span>
+                        <span class="product-item">💡🎛️  DALI Ballast Portfolio</span>
+                        <span class="product-item">🌞❄️💡📜 🎛️  Multivariate Control (DOE)</span>
+                    </div>
+                    <div class="achievement">Launched North American Starsense; developed DOE multivariate control system; 25% retention bonus offer</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="year">2004-2007</div>
+                    <div class="company">AeroComm (now Laird Connectivity)</div>
+                    <div class="product-gallery">
+                        <div class="product-image aerocomm-zigbee">
+                            <img src="AeroComm ZB2430.png" alt="AeroComm ZigBee Radio">
+                        </div>
+                        <div class="product-image aerocomm-zigbee">
+                            <img src="AeroComm ConnexNet.png" alt="AeroComm ConnexNet">
+                        </div>
+                    </div>
+                    <div class="products">
+                        <span class="product-item">🛜 ZB2430 ZigBee Radio</span>
+                        <span class="product-item">🔗 IP-Enabled Transceivers</span>
+                        <span class="product-item">📱 Pocket PC Bin Analyzer</span>
+                    </div>
+                    <div class="achievement">Created new IP-enabled product line; published ZigBee article, received editorial award</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="year">2003-2004</div>
+                    <div class="company">NetQuest LLC</div>
+                    <div class="product-gallery">
+                        <div class="product-image cattle-monitoring">
+                            <img src="Cow Ear Tag.png" alt="Cow Ear Tag">
+                        </div>
+                        <div class="product-image cattle-monitoring">
+                            <img src="Cattle Temp Monitor.png" alt="Cattle Temp Monitor">
+                        </div>
+                    </div>
+                    <div class="products">
+                        <span class="product-item">🐄 Cattle Temperature Monitoring</span>
+                    </div>
+                    <div class="achievement">First connected device - proved wireless monitoring concept for agriculture</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+
+        <div class="story-section">
+            <h2>What's Next: The AI-Powered Future</h2>
+            <div class="story-content">
+                <p>As I look toward the next chapter, I'm fascinated by the convergence of AI/ML with connected infrastructure. The opportunity to create truly intelligent buildings that learn, adapt, and optimize themselves represents the next frontier in product innovation.</p>
+                
+                <div class="highlight-quote">
+                    "The companies that win won't be those with the most sophisticated AI. They'll be those that use AI to solve the most meaningful customer problems."
+                </div>
+
+                <p>Whether it's optimizing building operations, enabling aging in place through smart home technologies, or revolutionizing urban infrastructure through connected city solutions, the fundamentals remain the same: <strong>start with the problem, obsess over the customer, and build products that make people's lives measurably better.</strong></p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h3>Building the Connected Future</h3>
+            <p>Ready to transform problems into breakthrough products? Let's connect and explore how 22+ years of IoT innovation can drive your next success story.</p>
+        </div>
+        
+        <div class="legend">
+            <h3>Product Categories</h3>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <span>IoT & Connected Devices</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
+                    <span>Lighting Controls</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
+                    <span>Building Automation</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);"></div>
+                    <span>Smart Plumbing</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+                        
